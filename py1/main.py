@@ -1,46 +1,45 @@
-import time
 import sheep
 import wolf
 import options
 import json
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 import csv
 
 
-def check_alive(flock_of_sheep):
-    survivors = 0
-    for i in range(flock_size):
-        if flock_of_sheep[i].is_alive():
-            survivors += 1
-    return survivors
+def check_alive(flock, size):
+    alive = 0
+    for h in range(size):
+        if flock[h].is_alive():
+            alive += 1
+    return alive
 
 
-def save_to_csv(round, survivors):
-    sur = [survivors]
-    rou = [round + 1]
+def save_to_csv(round_num, am_of_sheep_alive):
+    sur = [am_of_sheep_alive]
+    rou = [round_num + 1]
     if round == 0:
-        with open('alive.csv', 'w', newline='') as csv_file:
+        with open('output/alive.csv', 'w', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(header_csv)
             writer.writerow(rou + sur)
     else:
-        with open('alive.csv', 'a', newline='') as csv_file:
+        with open('output/alive.csv', 'a', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(rou + sur)
 
 
-def save_to_json(round, wolves_coordinates, sheep_coordinates):
+def save_to_json(round_num, wolves_pos, sheep_pos):
     dictionary = {
-        "round_no": round,
-        "wolf_pos": wolves_coordinates,
-        "sheep_pos": sheep_coordinates
+        "round_no": round_num,
+        "wolf_pos": wolves_pos,
+        "sheep_pos": sheep_pos
     }
     json_dictionary = json.dumps(dictionary, indent=3)
     if round == 0:
-        with open('pos.json', 'w', newline='') as json_file:
+        with open('output/pos.json', 'w', newline='') as json_file:
             json_file.write(json_dictionary)
     else:
-        with open('pos.json', 'a', newline='') as json_file:
+        with open('output/pos.json', 'a', newline='') as json_file:
             json_file.write(json_dictionary)
 
 
@@ -52,6 +51,7 @@ if __name__ == '__main__':
     flock_of_sheep = []
     wolves = []
     cause = ""
+    path = ""
     x, y = 0.0, 0.0
 
     for i in range(flock_size):
@@ -69,8 +69,8 @@ if __name__ == '__main__':
         sheep_coordinates = []
         sheep_id = []
         wolves_coordinates = []
-        survivors = check_alive(flock_of_sheep)
-        if check_alive(flock_of_sheep) == 0:
+        survivors = check_alive(flock_of_sheep, flock_size)
+        if check_alive(flock_of_sheep, flock_size) == 0:
             cause = "All sheep have been eaten"
             break
         if rounds <= 1:
