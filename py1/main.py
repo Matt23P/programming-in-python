@@ -113,6 +113,7 @@ if __name__ == '__main__':
                                         wolves[k].pos_y -= wolves[k].wolf_move_dist
             # --- save wolves positions to the list --- #
             wolves_coordinates.append(wolves[k].get_wolf_position())
+        # --- save to csv file -- #
         sur = [survivors]
         rou = [round + 1]
         if round == 0:
