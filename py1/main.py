@@ -15,9 +15,39 @@ def check_alive(flock_of_sheep):
     return survivors
 
 
+def save_to_csv(round, survivors):
+    sur = [survivors]
+    rou = [round + 1]
+    if round == 0:
+        with open('alive.csv', 'w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(header_csv)
+            writer.writerow(rou + sur)
+    else:
+        with open('alive.csv', 'a', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(rou + sur)
+
+
+def save_to_json(round, wolves_coordinates, sheep_coordinates):
+    dictionary = {
+        "round_no": round,
+        "wolf_pos": wolves_coordinates,
+        "sheep_pos": sheep_coordinates
+    }
+    json_dictionary = json.dumps(dictionary, indent=3)
+    if round == 0:
+        with open('pos.json', 'w', newline='') as json_file:
+            json_file.write(json_dictionary)
+    else:
+        with open('pos.json', 'a', newline='') as json_file:
+            json_file.write(json_dictionary)
+
+
 if __name__ == '__main__':
     rounds, sheep_move_dist, flock_size, num_of_wolves, wolf_move_dist, board_a, board_b = options.menu()
 
+    dead_sheep_cord = [None, None]
     header_csv = ["Round", "Sheep alive"]
     flock_of_sheep = []
     wolves = []
@@ -65,6 +95,9 @@ if __name__ == '__main__':
                 print(">Sheep no." + str(flock_of_sheep[j].sheep_id) + " goes " + path + " by " + str(sheep_move_dist))
                 # --- save sheep positions to the list --- #
                 sheep_coordinates.append(flock_of_sheep[j].get_sheep_position())
+                sheep_id.append(flock_of_sheep[j].get_sheep_id())
+            else:
+                sheep_coordinates.append(dead_sheep_cord)
                 sheep_id.append(flock_of_sheep[j].get_sheep_id())
         # time.sleep(1)
         # --- move wolves --- #
@@ -114,18 +147,9 @@ if __name__ == '__main__':
             # --- save wolves positions to the list --- #
             wolves_coordinates.append(wolves[k].get_wolf_position())
         # --- save to csv file -- #
-        sur = [survivors]
-        rou = [round + 1]
-        if round == 0:
-            with open('alive.csv', 'w', newline='') as csv_file:
-                writer = csv.writer(csv_file)
-                writer.writerow(header_csv)
-                writer.writerow(rou + sur)
-        else:
-            with open('alive.csv', 'a', newline='') as csv_file:
-                writer = csv.writer(csv_file)
-                writer.writerow(rou + sur)
-
+        save_to_csv(round, survivors)
+        # --- save to json file --- #
+        save_to_json(round, wolves_coordinates, sheep_coordinates)
         # --- INFO --- #
         for info in range(flock_size):
             if flock_of_sheep[info].is_alive():

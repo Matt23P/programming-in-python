@@ -22,12 +22,13 @@ class Wolf:
         identity = 0
         for i in range(sheep_amount):
             sheep_x, sheep_y = sheep_pos[i]
-            x = self.pos_x - sheep_x
-            y = self.pos_y - sheep_y
-            distance = numpy.sqrt(x ** 2 + y ** 2)
-            if distance < last_min:
-                last_min = distance
-                identity = sheep_id[i]
+            if sheep_x is not None and sheep_y is not None:
+                x = self.pos_x - sheep_x
+                y = self.pos_y - sheep_y
+                distance = numpy.sqrt(x ** 2 + y ** 2)
+                if distance < last_min:
+                    last_min = distance
+                    identity = sheep_id[i]
         return last_min, identity
 
     def eat(self, victim_id, sheep_amount, sheep_id, sheep_pos):
