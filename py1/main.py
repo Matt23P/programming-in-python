@@ -4,6 +4,7 @@ import wolf
 import options
 import json
 from colorama import Fore, Back, Style
+import csv
 
 
 def check_alive(flock_of_sheep):
@@ -17,6 +18,7 @@ def check_alive(flock_of_sheep):
 if __name__ == '__main__':
     rounds, sheep_move_dist, flock_size, num_of_wolves, wolf_move_dist, board_a, board_b = options.menu()
 
+    header_csv = ["Round", "Sheep alive"]
     flock_of_sheep = []
     wolves = []
     cause = ""
@@ -111,6 +113,17 @@ if __name__ == '__main__':
                                         wolves[k].pos_y -= wolves[k].wolf_move_dist
             # --- save wolves positions to the list --- #
             wolves_coordinates.append(wolves[k].get_wolf_position())
+        sur = [survivors]
+        rou = [round + 1]
+        if round == 0:
+            with open('alive.csv', 'w', newline='') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(header_csv)
+                writer.writerow(rou + sur)
+        else:
+            with open('alive.csv', 'a', newline='') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(rou + sur)
 
         # --- INFO --- #
         for info in range(flock_size):
