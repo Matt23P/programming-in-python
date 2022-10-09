@@ -49,10 +49,10 @@ class Sheep:
 
     def move_sheep(self):
         while True:
+            # --- if chosen direction is impossible to perform, sheep will pick other direction --- #
             direct = direction.get_direction()
             if check_move(self.pos_x, self.pos_y, self.board_x, self.board_y, direct, self.sheep_move_dist):
                 break
-
         if direct == 0:  # up
             self.pos_y += self.sheep_move_dist
             return 0

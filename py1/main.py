@@ -53,7 +53,12 @@ if __name__ == '__main__':
     cause = ""
     path = ""
     x, y = 0.0, 0.0
+    if rounds <= 1:
+        cause = str(rounds) + "round has elapsed"
+    else:
+        cause = str(rounds) + "rounds have elapsed"
 
+    # --- create the flock and wolves -- #
     for i in range(flock_size):
         flock_of_sheep.append(sheep.Sheep(i, sheep_move_dist, board_a, board_b))
     for j in range(num_of_wolves):
@@ -70,13 +75,11 @@ if __name__ == '__main__':
         sheep_id = []
         wolves_coordinates = []
         survivors = check_alive(flock_of_sheep, flock_size)
+        # --- check if the whole flock aint dead --- #
         if check_alive(flock_of_sheep, flock_size) == 0:
             cause = "All sheep have been eaten"
             break
-        if rounds <= 1:
-            cause = str(rounds) + "round has elapsed"
-        else:
-            cause = str(rounds) + "rounds have elapsed"
+
         # --- move flock --- #
         print("---=== ROUND " + str(round + 1) + " ===---")
         print("Sheep alive: " + str(survivors))
@@ -91,7 +94,6 @@ if __name__ == '__main__':
                     path = "left"
                 elif direct == 3:  # right
                     path = "right"
-                # time.sleep(1)
                 print(">Sheep no." + str(flock_of_sheep[j].sheep_id) + " goes " + path + " by " + str(sheep_move_dist))
                 # --- save sheep positions to the list --- #
                 sheep_coordinates.append(flock_of_sheep[j].get_sheep_position())
@@ -99,7 +101,7 @@ if __name__ == '__main__':
             else:
                 sheep_coordinates.append(dead_sheep_cord)
                 sheep_id.append(flock_of_sheep[j].get_sheep_id())
-        # time.sleep(1)
+
         # --- move wolves --- #
         for k in range(num_of_wolves):
             index, distance = wolves[k].move_wolf(sheep_coordinates, sheep_id, survivors)
@@ -107,13 +109,14 @@ if __name__ == '__main__':
                 if flock_of_sheep[g].sheep_id == index:
                     targeted_sheep = flock_of_sheep[g].sheep_id
             if flock_of_sheep[targeted_sheep].is_alive():
+                # --- eat the closest sheep if is in range of the wolf --- #
                 if distance <= wolf_move_dist:
                     for g in range(flock_size):
                         if flock_of_sheep[g].sheep_id == index:
                             if flock_of_sheep[g].is_alive():
                                 flock_of_sheep[g].set_alive(False)
                                 wolves[k].eat(flock_of_sheep[g].sheep_id, survivors, sheep_id, sheep_coordinates)
-
+                # --- if sheep is not in range of the wolf, move wolf towards it --- #
                 else:
                     print("#Wolf" + str(wolves[k].wolf_id) + " CHASE sheep no." + str(index))
                     for i in range(survivors):
@@ -146,10 +149,12 @@ if __name__ == '__main__':
                                         wolves[k].pos_y -= wolves[k].wolf_move_dist
             # --- save wolves positions to the list --- #
             wolves_coordinates.append(wolves[k].get_wolf_position())
+
         # --- save to csv file -- #
         save_to_csv(round, survivors)
         # --- save to json file --- #
         save_to_json(round, wolves_coordinates, sheep_coordinates)
+
         # --- INFO --- #
         for info in range(flock_size):
             if flock_of_sheep[info].is_alive():
