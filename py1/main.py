@@ -1,3 +1,4 @@
+import os
 import sheep
 import wolf
 import options
@@ -15,37 +16,50 @@ def check_alive(flock, size):
     return alive
 
 
-def save_to_csv(round_num, am_of_sheep_alive):
+def save_to_csv(round_num, am_of_sheep_alive, dirr):
     sur = [am_of_sheep_alive]
     rou = [round_num + 1]
-    if round == 0:
-        with open('output/alive.csv', 'w', newline='') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(header_csv)
-            writer.writerow(rou + sur)
+    path_to_file = str(dirr) + "/alive.csv"
+    if os.path.exists(dirr):
+        if round == 0:
+            with open(path_to_file, 'w', newline='') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(header_csv)
+                writer.writerow(rou + sur)
+        else:
+            with open(path_to_file, 'a', newline='') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerow(rou + sur)
     else:
-        with open('output/alive.csv', 'a', newline='') as csv_file:
+        os.mkdir(dirr)
+        with open(path_to_file, 'x', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(rou + sur)
 
 
-def save_to_json(round_num, wolves_pos, sheep_pos):
+def save_to_json(round_num, wolves_pos, sheep_pos, dirr):
     dictionary = {
         "round_no": round_num,
         "wolf_pos": wolves_pos,
         "sheep_pos": sheep_pos
     }
     json_dictionary = json.dumps(dictionary, indent=3)
-    if round == 0:
-        with open('output/pos.json', 'w', newline='') as json_file:
-            json_file.write(json_dictionary)
+    path_to_file = str(dirr) + "/pos.json"
+    if os.path.exists(dirr):
+        if round == 0:
+            with open(path_to_file, 'w', newline='') as json_file:
+                json_file.write(json_dictionary)
+        else:
+            with open(path_to_file, 'a', newline='') as json_file:
+                json_file.write(json_dictionary)
     else:
-        with open('output/pos.json', 'a', newline='') as json_file:
+        os.mkdir(dirr)
+        with open(path_to_file, 'x', newline='') as json_file:
             json_file.write(json_dictionary)
 
 
 if __name__ == '__main__':
-    rounds, sheep_move_dist, flock_size, num_of_wolves, wolf_move_dist, board_a, board_b = options.menu()
+    wait, rounds, flock_size, num_of_wolves, directory, board_a, board_b, sheep_move_dist, wolf_move_dist = args.get_args()
 
     dead_sheep_cord = [None, None]
     header_csv = ["Round", "Sheep alive"]
@@ -152,9 +166,9 @@ if __name__ == '__main__':
             wolves_coordinates.append(wolves[k].get_wolf_position())
 
         # --- save to csv file -- #
-        save_to_csv(round, survivors)
+        save_to_csv(round, survivors, directory)
         # --- save to json file --- #
-        save_to_json(round, wolves_coordinates, sheep_coordinates)
+        save_to_json(round, wolves_coordinates, sheep_coordinates, directory)
 
         # --- INFO --- #
         for info in range(flock_size):
@@ -162,6 +176,9 @@ if __name__ == '__main__':
                 print(Fore.GREEN + flock_of_sheep[info].__str__() + Style.RESET_ALL)
         for information in range(num_of_wolves):
             print(Fore.RED + wolves[information].__str__() + Style.RESET_ALL)
+        if round != rounds - 1:
+            if wait:
+                input("PRESS ENTER TO CONTINUE\n")
 
     print("=-=-=-=-= END OF SIMULATION =-=-=-=-=")
     print(cause + "!")
