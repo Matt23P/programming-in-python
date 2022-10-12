@@ -1,7 +1,6 @@
 import os
 import sheep
 import wolf
-import options
 import json
 from colorama import Fore, Style
 import csv

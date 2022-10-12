@@ -1,5 +1,10 @@
 import random
-import direction
+
+
+def get_direction():
+    # --- get the random integer from 0 to 3 --- #
+    direction = random.randint(0, 3)
+    return int(direction)
 
 
 def check_move(pos_x, pos_y, board_x, board_y, direct, sheep_move_dist):
@@ -50,7 +55,7 @@ class Sheep:
     def move_sheep(self):
         while True:
             # --- if chosen direction is impossible to perform, sheep will pick other direction --- #
-            direct = direction.get_direction()
+            direct = get_direction()
             if check_move(self.pos_x, self.pos_y, self.board_x, self.board_y, direct, self.sheep_move_dist):
                 break
         if direct == 0:  # up
