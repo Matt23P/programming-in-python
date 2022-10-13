@@ -6,6 +6,7 @@ from colorama import Fore, Style
 import csv
 import args
 import logging
+import save_operations
 
 
 def check_alive(flock, size):
@@ -16,53 +17,10 @@ def check_alive(flock, size):
     return alive
 
 
-def save_to_csv(round_num, am_of_sheep_alive, dirr):
-    sur = [am_of_sheep_alive]
-    rou = [round_num + 1]
-    path_to_file = str(dirr) + "/alive.csv"
-    if os.path.exists(dirr):
-        if round == 0:
-            with open(path_to_file, 'w', newline='') as csv_file:
-                writer = csv.writer(csv_file)
-                writer.writerow(header_csv)
-                writer.writerow(rou + sur)
-        else:
-            with open(path_to_file, 'a', newline='') as csv_file:
-                writer = csv.writer(csv_file)
-                writer.writerow(rou + sur)
-    else:
-        os.mkdir(dirr)
-        with open(path_to_file, 'x', newline='') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(rou + sur)
-
-
-def save_to_json(round_num, wolves_pos, sheep_pos, dirr):
-    dictionary = {
-        "round_no": round_num,
-        "wolf_pos": wolves_pos,
-        "sheep_pos": sheep_pos
-    }
-    json_dictionary = json.dumps(dictionary, indent=3)
-    path_to_file = str(dirr) + "/pos.json"
-    if os.path.exists(dirr):
-        if round == 0:
-            with open(path_to_file, 'w', newline='') as json_file:
-                json_file.write(json_dictionary)
-        else:
-            with open(path_to_file, 'a', newline='') as json_file:
-                json_file.write(json_dictionary)
-    else:
-        os.mkdir(dirr)
-        with open(path_to_file, 'x', newline='') as json_file:
-            json_file.write(json_dictionary)
-
-
 if __name__ == '__main__':
     wait, rounds, flock_size, num_of_wolves, directory, board_a, board_b, sheep_move_dist, wolf_move_dist = args.get_args()
 
     dead_sheep_cord = [None, None]
-    header_csv = ["Round", "Sheep alive"]
     flock_of_sheep = []
     wolves = []
     cause = ""
@@ -166,9 +124,9 @@ if __name__ == '__main__':
             wolves_coordinates.append(wolves[k].get_wolf_position())
 
         # --- save to csv file -- #
-        save_to_csv(round, survivors, directory)
+        save_operations.save_to_csv(round, survivors, directory)
         # --- save to json file --- #
-        save_to_json(round, wolves_coordinates, sheep_coordinates, directory)
+        save_operations.save_to_json(round, wolves_coordinates, sheep_coordinates, directory)
 
         # --- INFO --- #
         for info in range(flock_size):
