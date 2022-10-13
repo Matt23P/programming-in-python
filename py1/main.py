@@ -5,6 +5,7 @@ import json
 from colorama import Fore, Style
 import csv
 import args
+import logging
 
 
 def check_alive(flock, size):
