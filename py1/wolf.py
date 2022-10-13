@@ -34,7 +34,7 @@ class Wolf:
 
     def eat(self, victim_id, sheep_amount, sheep_id, sheep_pos):
         self.sheep_eaten += 1
-        print(Fore.RED + Back.BLACK + "Wolf" + str(self.wolf_id) + " EATS sheep no." + str(victim_id) + Style.RESET_ALL)
+        print(Fore.RED + Back.BLACK + "#Wolf" + str(self.wolf_id) + " EATS sheep no." + str(victim_id) + Style.RESET_ALL)
         for i in range(sheep_amount):
             if sheep_id[i] == victim_id:
                 self.pos_x, self.pos_y = sheep_pos[i]

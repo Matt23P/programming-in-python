@@ -7,10 +7,10 @@ def get_args():
     parser = argparse.ArgumentParser(description="Programming in Python 2022/23 =-=-= WOLF & SHEEP",
                                      epilog="M. Przybyl 236630, F. Warchol 236682")
     parser.add_argument("-d", "--directory", default="output", type=str,
-                        help="directory where output files will be placed (eg. DIRECTORY = ./dir/output)", nargs=1)
-    parser.add_argument("-r", "--rounds", default=50, type=int, help="the number of rounds (ROUNDS > 0)", nargs=1)
-    parser.add_argument("-s", "--sheep", default=15, type=int, help="the number of sheep in a flock (SHEEP > 0)", nargs=1)
-    parser.add_argument("-wo", "--wolves", default=1, type=int, help="the number of wolves (WOLVES > 0)", nargs=1)
+                        help="directory where output files will be placed (eg. DIRECTORY = ./dir/output)")
+    parser.add_argument("-r", "--rounds", default=50, type=int, help="the number of rounds (ROUNDS > 0)")
+    parser.add_argument("-s", "--sheep", default=15, type=int, help="the number of sheep in a flock (SHEEP > 0)")
+    parser.add_argument("-wo", "--wolves", default=1, type=int, help="the number of wolves (WOLVES > 0)")
     parser.add_argument("-c", "--config", type=str,
                         help="indicates a configuration file (eg. CONFIG = ./dir/config.ini)")
     parser.add_argument("-w", "--wait", default=0, type=int,
