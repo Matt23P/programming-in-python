@@ -16,9 +16,19 @@ def get_args():
     parser.add_argument("-w", "--wait", default=0, type=int,
                         help="simulation will be paused at the end of each round (WAIT = 0 - do not pause, WAIT = 1 - "
                              "pause)")
-    parser.add_argument("-l", "--log",
-                        help="turn on logging events (DEBUG - 10, INFO - 20, WARNING - 30, ERROR - 40, CRITICAL - 50)")
+    parser.add_argument("-l", "--log", type=int,
+                        help="turn on logging events (DEBUG-10, INFO-20, WARNING-30, ERROR-40, CRITICAL-50)")
     args = parser.parse_args()
+
+    log_level = args.log
+    level = 10
+    while True:
+        if log_level == level:
+            break
+        if level == 50:
+            exit(-1)
+        level += 10
+
     var = args.wait
     if var > 1 or var < 0:
         exit(-1)
@@ -83,4 +93,4 @@ def get_args():
         else:
             exit(-1)
 
-    return wait, rounds, flock_size, num_of_wolves, directory, board_a, board_b, sheep_move_dist, wolf_move_dist
+    return wait, rounds, flock_size, num_of_wolves, directory, board_a, board_b, sheep_move_dist, wolf_move_dist, log_level
