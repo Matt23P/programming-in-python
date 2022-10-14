@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-./py1/output/alive.csv
-./py1/output/pos.json
+.py1/output/alive.csv
+.py1/output/pos.json
+.py1/chase.log
+.py1/.vscode
+.py1/.idea
