@@ -50,6 +50,7 @@ if __name__ == '__main__':
         cause = str(rounds) + "rounds have elapsed"
 
     # --- create the flock and wolves -- #
+    logging.warning("SIMULATION HAS STARTED")
     for i in range(flock_size):
         flock_of_sheep.append(sheep.Sheep(i, sheep_move_dist, board_a, board_b))
     for j in range(num_of_wolves):
@@ -64,6 +65,7 @@ if __name__ == '__main__':
         print(wolves[information].__str__())
 
     for round in range(rounds):
+        logging.warning("Round" + str(round) + " has begun")
         sheep_coordinates = []
         sheep_id = []
         wolves_coordinates = []
