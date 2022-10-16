@@ -17,7 +17,7 @@ def get_args():
                         help="simulation will be paused at the end of each round (WAIT = 0 - do not pause, WAIT = 1 - "
                              "pause)")
     parser.add_argument("-l", "--log", type=int,
-                        help="turn on logging events (DEBUG-10, INFO-20, WARNING-30, ERROR-40, CRITICAL-50)")
+                        help="turn on logging events (DEBUG-10, INFO-20, WARNING-30, ERROR-40, CRITICAL-50)", default=10)
     args = parser.parse_args()
 
     log_level = args.log
