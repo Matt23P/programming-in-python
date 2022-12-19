@@ -10,7 +10,7 @@ def save_to_csv(round_num, am_of_sheep_alive, dirr):
     rou = [round_num + 1]
     path_to_file = str(dirr) + "/alive.csv"
     if os.path.exists(dirr):
-        if round == 0:
+        if round_num == 0:
             with open(path_to_file, 'w', newline='') as csv_file:
                 writer = csv.writer(csv_file)
                 writer.writerow(header_csv)
@@ -28,14 +28,14 @@ def save_to_csv(round_num, am_of_sheep_alive, dirr):
 
 def save_to_json(round_num, wolves_pos, sheep_pos, dirr):
     dictionary = {
-        "round_no": round_num,
+        "round_no": round_num + 1,
         "wolf_pos": wolves_pos,
         "sheep_pos": sheep_pos
     }
     json_dictionary = json.dumps(dictionary, indent=3)
     path_to_file = str(dirr) + "/pos.json"
     if os.path.exists(dirr):
-        if round == 0:
+        if round_num == 0:
             with open(path_to_file, 'w', newline='') as json_file:
                 json_file.write(json_dictionary)
         else:

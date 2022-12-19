@@ -8,8 +8,8 @@ setup(
     author='Mateusz Przybyl',
     author_email='236630@edu.p.lodz.pl',
     license='MIT license',
-    packages=[ 'chase' ],
-    install_requires=[ 'colorama' ],
+    packages=['chase'],
+    install_requires=['colorama'],
     classifiers=[
         'Intended Audience :: Science/Research',
         'Programming Language :: Python :: 3.10',

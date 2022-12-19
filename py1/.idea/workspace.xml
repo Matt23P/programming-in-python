@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a9eedd1-7aae-4726-afec-80140c2ce1cb" name="Changes" comment="" />
+    <list default="true" id="6a9eedd1-7aae-4726-afec-80140c2ce1cb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/args.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/save_operations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/sheep.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chase/wolf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/create.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_pypackage.sh" beforeDir="false" afterPath="$PROJECT_DIR$/create_pypackage.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/alive.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/pos.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/pos.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/save_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/save_operations.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,12 +42,18 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/_projects&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/_studia/programming_Python/programming-in-python/py1&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\_studia\programming_Python\programming-in-python\py1\chase" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Shell Script.create_pypackage.sh">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="py1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -45,10 +64,9 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="-l 10" />
+      <option name="PARAMETERS" value="-w 0 -r 10" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -56,6 +74,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="create_pypackage.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/create_pypackage.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Shell Script.create_pypackage.sh" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Shell Script.create_pypackage.sh" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -86,7 +128,13 @@
       <workItem from="1665608750664" duration="9273000" />
       <workItem from="1665672102929" duration="1635000" />
       <workItem from="1665738628385" duration="1754000" />
-      <workItem from="1665753372947" duration="5055000" />
+      <workItem from="1665753372947" duration="5101000" />
+      <workItem from="1665931440211" duration="216000" />
+      <workItem from="1665961604564" duration="365000" />
+      <workItem from="1666395401318" duration="100000" />
+      <workItem from="1667922198508" duration="462000" />
+      <workItem from="1668472062200" duration="442000" />
+      <workItem from="1670400840319" duration="2465000" />
     </task>
     <servers />
   </component>
@@ -105,7 +153,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/py1$main.coverage" NAME="main Coverage Results" MODIFIED="1665492737388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py1$main.coverage" NAME="main Coverage Results" MODIFIED="1670401360908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1665757800135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

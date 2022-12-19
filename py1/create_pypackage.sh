@@ -1,6 +1,7 @@
 #create new venv
 python -m venv venv
 #get required packaged
-pip install setuptools wheel
+..\venv\Scripts\pip.exe install setuptools wheel
+#pip install setuptools wheel
 #create package
-python create.py sdist bdist_wheel
+python setup.py sdist bdist_wheel

@@ -128,8 +128,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.py1/output/alive.csv
-.py1/output/pos.json
-.py1/chase.log
-.py1/.vscode
+.idea/
+
+py1/output/
+py1/output/
+py1/chase.log
+.vscode/
 .py1/.idea
