@@ -130,8 +130,7 @@ dmypy.json
 
 .idea/
 
-py1/output/
-py1/output/
-py1/chase.log
+.py1/output/
+.py1/chase.log
 .vscode/
 .py1/.idea
