@@ -1,5 +1,5 @@
 import pandas
-import matplotlib
+import matplotlib.pyplot as plt
 import seaborn
 import math
 
@@ -44,8 +44,18 @@ def maximum(tab):
             continue
     return maxi
 
+def barplot_gender(female, male, infant):
+    bar_data = { 'female': female, 'male': male, 'infant': infant}
+    genders = list(bar_data.keys())
+    numbers = list(bar_data.values())
+    plt.bar(genders, numbers, width=0.5, color='firebrick')
+    plt.xlabel('Gender')
+    plt.ylabel('Count')
+    plt.title('')
+    plt.show()
 
-def gender(frame):
+
+def group_by_gender(frame):
     matrix = frame[frame.columns[0]]
     matrix.tolist()
     all_sex = len(matrix)
@@ -71,12 +81,51 @@ def gender(frame):
     df = pandas.DataFrame(to_frame_data, index=['Female', 'Male', 'Infant', '---------', 'Sum'])
 
     print(df.to_string())
+    barplot_gender(female, male, infant)
+
+def histograms_feature(length, diameter, height, whole_weight, shucked_weight, viscera_weight, shell_weight, ring):
+    fig1, axs1 = plt.subplots(2, 2, sharey=True, tight_layout=True)
+    axs1[0][0].hist(length, color='lightblue')
+    axs1[0][0].set_title('length')
+    axs1[0][0].set_xlabel('Length')
+    axs1[0][0].set_ylabel('Amount')
+    axs1[0][1].hist(diameter, color='lightgreen')
+    axs1[0][1].set_title('diameter')
+    axs1[0][1].set_xlabel('Diameter')
+    axs1[0][1].set_ylabel('Amount')
+    axs1[1][0].hist(height, color='yellowgreen')
+    axs1[1][0].set_title('height')
+    axs1[1][0].set_xlabel('Height')
+    axs1[1][0].set_ylabel('Amount')
+    axs1[1][1].hist(whole_weight, color='indianred')
+    axs1[1][1].set_title('whole_weight')
+    axs1[1][1].set_xlabel('Weight')
+    axs1[1][1].set_ylabel('Amount')
+
+    plt.show()
+    
+    fig2, axs2 = plt.subplots(2, 2, sharey=True, tight_layout=True)
+    axs2[0][0].hist(shucked_weight, color='gold')
+    axs2[0][0].set_title('shucked_weight')
+    axs1[0][0].set_xlabel('Shucked_weight')
+    axs1[0][0].set_ylabel('Amount')
+    axs2[0][1].hist(viscera_weight, color='aqua')
+    axs2[0][1].set_title('viscera_weight')
+    axs1[0][1].set_xlabel('Viscera_weight')
+    axs1[0][1].set_ylabel('Amount')
+    axs2[1][0].hist(shell_weight, color='violet')
+    axs2[1][0].set_title('shell_weight')
+    axs1[0][1].set_xlabel('Shell_weight')
+    axs1[0][1].set_ylabel('Amount')
+    axs2[1][1].hist(ring, color='chocolate')
+    axs2[1][1].set_title('ring')
+    axs1[0][1].set_xlabel('Rings')
+    axs1[0][1].set_ylabel('Amount')
+    plt.show()
 
 
-if __name__ == '__main__':
-    data_frame = pandas.read_csv('./dataset/data.csv')
-    gender(data_frame)
 
+def group_by_feature(data_frame):
     length = data_frame[data_frame.columns[1]]
     diameter = data_frame[data_frame.columns[2]]
     height = data_frame[data_frame.columns[3]]
@@ -85,14 +134,20 @@ if __name__ == '__main__':
     viscera_weight = data_frame[data_frame.columns[6]]
     shell_weight = data_frame[data_frame.columns[7]]
     ring = data_frame[data_frame.columns[8]]
-    length.tolist()
-    diameter.tolist()
-    height.tolist()
-    whole_weight.tolist()
-    shucked_weight.tolist()
-    viscera_weight.tolist()
-    shell_weight.tolist()
-    ring.tolist()
+
+    features = [
+        length,
+        diameter,
+        height,
+        whole_weight,
+        shucked_weight,
+        viscera_weight,
+        shell_weight,
+        ring
+    ]
+        
+    for feature in features:
+        feature.tolist()
 
     processed_data = {
         'mean': [avg(length), avg(diameter), avg(height), avg(whole_weight), avg(shucked_weight), avg(viscera_weight),
@@ -117,5 +172,13 @@ if __name__ == '__main__':
                                                  'Shucked weight', 'Viscera weight', 'Shell weight',
                                                  'Rings'])
     print(df.to_string())
+    histograms_feature(length, diameter, height, whole_weight, shucked_weight, viscera_weight, shell_weight, ring)
 
+
+if __name__ == '__main__':
+    data_frame = pandas.read_csv('./dataset/data.csv')
+    group_by_gender(data_frame)
+
+    group_by_feature(data_frame)
+    
     exit(0)
